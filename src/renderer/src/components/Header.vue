@@ -22,24 +22,36 @@ function handleClick(event, cmd) {
 </script>
 
 <style lang="less">
+.page-header {
+  padding-top: 20px;
+  height: 30px;
+  -webkit-app-region: drag;
+}
+
 .menu {
   display: flex;
   list-style: none;
-  font-size: 12px;
-  height: 50px;
-  padding: 0 10px;
+  justify-content: center;
+  font-size: 14px;
 
   .menu-button {
-    padding: 5px;
+    padding: 5px 10px;
+    margin: 0 5px;
     border-radius: 5px;
-    color: #87cefa;
+    color: var(--color-e8eaed);
     display: inline-flex;
     justify-content: center;
     align-items: center;
+    transition: background-color 100ms ease-in;
 
     &:hover {
-      opacity: 0.8;
+      background: #3d4043;
       cursor: pointer;
+    }
+
+    &:active {
+      color: var(--color-202124);
+      background-color: var(--color-93b3f2);
     }
   }
 }

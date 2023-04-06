@@ -9,7 +9,11 @@ function createWindow(): void {
     width: 900,
     height: 670,
     show: false,
+    titleBarStyle: 'hidden',
+    frame: false,
     autoHideMenuBar: true,
+    vibrancy: 'dark',
+    visualEffectState: 'active',
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
