@@ -4,11 +4,16 @@
     "src/renderer/src/env.d.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.vue",
-    "src/preload/*.d.ts"
-, "src/renderer/lib"  ],
+    "src/preload/*.d.ts",
+    "src/renderer/lib/**/*"
+  ],
   "compilerOptions": {
     "composite": true,
     "baseUrl": ".",
+    "allowJs": true,
+    "strictPropertyInitialization": false,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
     "paths": {
       "@renderer/*": [
         "src/renderer/src/*"

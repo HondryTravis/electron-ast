@@ -27,13 +27,12 @@ function handleClick(event, cmd) {
   list-style: none;
   font-size: 12px;
   height: 50px;
+  padding: 0 10px;
 
   .menu-button {
-    padding: 10px;
+    padding: 5px;
     border-radius: 5px;
-    background: #87cefa;
-    color: #ffffff;
-    margin: 10px;
+    color: #87cefa;
     display: inline-flex;
     justify-content: center;
     align-items: center;

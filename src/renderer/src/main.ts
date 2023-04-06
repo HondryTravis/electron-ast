@@ -7,10 +7,12 @@ declare global {
 }
 
 import { createApp } from 'vue'
+import router from './router'
 import App from './App.vue'
 import JsonViewer from 'vue3-json-viewer'
 
 const app = createApp(App)
 
 app.use(JsonViewer)
+app.use(router)
 app.mount('#app')
