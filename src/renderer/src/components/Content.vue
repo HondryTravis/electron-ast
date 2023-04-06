@@ -63,9 +63,15 @@ const createEditor = () => {
     editorView.value.destory()
   }
 
+  const updatesExtension = EditorView.updateListener.of((tr) => {
+    if (tr.docChanged) {
+      context.html = tr.state.doc.toString()
+    }
+  })
+
   const state = EditorState.create({
     doc: context.html,
-    extensions: [basicSetup, oneDarkTheme, html()]
+    extensions: [basicSetup, oneDarkTheme, html(), updatesExtension]
   })
 
   if (instance?.refs.htmlRef) {
@@ -78,19 +84,16 @@ const createEditor = () => {
   }
 }
 
-const getHTML = () => {
-  return editorView.value.state.doc.toString()
-}
-
 const transformEvents = {
   toAST: async () => {
-    const html = getHTML()
+    const html = context.html
     const json = (transform as any).HTMLParser.parseASTFromHTML(html)
     context.json = json
   },
 
   saveToLocal: async () => {
-    window.LOCAL_DB_WRITE(LOCAL_DB_STORE_NAME)({ json: context.json, html: context.html })
+    const json = JSON.stringify(context.json)
+    window.LOCAL_DB_WRITE(LOCAL_DB_STORE_NAME)({ json, html: context.html })
   },
 
   exportJSON: async () => {
@@ -108,12 +111,29 @@ const transformEvents = {
     if (aTag) {
       aTag.remove()
     }
+  },
+  record: (target) => {
+    setTimeout(() => {
+      const { state } = editorView.value
+      editorView.value.dispatch({
+        changes: { from: 0, to: state.doc.length, insert: target.detail.html }
+      })
+
+      transformEvents.toAST()
+    })
   }
 }
 
 emitter.on('HeaderEvent', (args) => {
-  const { target } = args as any
-  transformEvents[target]()
+  const { target, type } = args as any
+  switch (type) {
+    case 'click':
+      transformEvents[target]()
+      break
+    case 'record':
+      transformEvents[type](target)
+      break
+  }
 })
 
 onMounted(() => {
@@ -132,7 +152,7 @@ onBeforeUnmount(() => {
 
 .content-view {
   display: flex;
-  height: calc(100vh - 50px);
+  height: calc(100vh - 60px);
 
   .content-view-title {
     height: 30px;
