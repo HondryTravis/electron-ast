@@ -3,7 +3,7 @@
     <div class="content-view-html">
       <div class="content-view-title">代码编辑器</div>
       <div class="html-wrapper">
-        <div ref="html"></div>
+        <div ref="htmlRef" class="html-editor"></div>
       </div>
     </div>
     <div class="content-view-json">
@@ -29,7 +29,7 @@ import { Transform } from '../../lib/transform'
 import { emitter } from '../utils'
 
 const instance = getCurrentInstance()
-const editorView = ref()
+const editorView = ref<any>(null)
 
 const transform = Transform.of()
 
@@ -68,10 +68,10 @@ const createEditor = () => {
     extensions: [basicSetup, oneDarkTheme, html()]
   })
 
-  if (instance?.refs.html) {
+  if (instance?.refs.htmlRef) {
     editorView.value = new EditorView({
       state: state,
-      parent: instance?.refs.html as HTMLElement
+      parent: instance?.refs.htmlRef as HTMLElement
     })
 
     window.__EDITOR__ = editorView.value
@@ -99,7 +99,9 @@ emitter.on('HeaderEvent', (args) => {
 })
 
 onMounted(() => {
-  createEditor()
+  setTimeout(() => {
+    createEditor()
+  })
 })
 
 onBeforeUnmount(() => {
