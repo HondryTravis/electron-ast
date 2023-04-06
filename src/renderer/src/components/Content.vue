@@ -38,7 +38,7 @@ const context = reactive({
     attribs: {},
     children: [
       {
-        data: 'hello world!',
+        data: 'hello world! (请粘贴 HTML 来识别)',
         endIndex: null,
         next: null,
         parent: {},
@@ -55,7 +55,7 @@ const context = reactive({
     startIndex: null,
     type: 'tag'
   },
-  html: `<div>hello world!</div>`
+  html: `<div>hello world! (请粘贴 HTML 来识别)</div>`
 })
 
 const createEditor = () => {
