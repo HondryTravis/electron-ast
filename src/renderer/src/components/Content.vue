@@ -88,8 +88,26 @@ const transformEvents = {
     const json = (transform as any).HTMLParser.parseASTFromHTML(html)
     context.json = json
   },
+
   saveToLocal: async () => {
     window.LOCAL_DB_WRITE(LOCAL_DB_STORE_NAME)({ json: context.json, html: context.html })
+  },
+
+  exportJSON: async () => {
+    const json = JSON.stringify(context.json)
+
+    const blob = new Blob([json], { type: 'application/json' })
+
+    const objectURL = URL.createObjectURL(blob)
+    const aTag = document.createElement('a')
+
+    aTag.href = objectURL
+    aTag.download = 'data.json'
+    aTag.click()
+
+    if (aTag) {
+      aTag.remove()
+    }
   }
 }
 

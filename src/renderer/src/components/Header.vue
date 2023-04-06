@@ -3,7 +3,7 @@
     <ul class="menu">
       <li class="menu-button" @click="handleClick($event, 'toAST')">转换 AST</li>
       <li class="menu-button" @click="handleClick($event, 'saveToLocal')">暂存到本地</li>
-      <li class="menu-button" @click="handleClick($event, 'localRestore')">本地恢复</li>
+      <!-- <li class="menu-button" @click="handleClick($event, 'localRestore')">本地恢复</li> -->
       <li class="menu-button" @click="handleClick($event, 'exportJSON')">导出到 JSON</li>
     </ul>
   </div>
