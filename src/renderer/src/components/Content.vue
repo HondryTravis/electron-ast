@@ -66,11 +66,19 @@ const createEditor = () => {
   const updatesExtension = EditorView.updateListener.of((tr) => {
     if (tr.docChanged) {
       context.html = tr.state.doc.toString()
+      window.__CACHE__.html = tr.state.doc.toString()
     }
   })
 
+  let docContent = context.html
+
+  if (window.__CACHE__.html) {
+    docContent = window.__CACHE__.html
+    window.__CACHE__.html = ''
+  }
+
   const state = EditorState.create({
-    doc: context.html,
+    doc: docContent,
     extensions: [basicSetup, oneDarkTheme, html(), updatesExtension]
   })
 

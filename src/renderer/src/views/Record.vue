@@ -71,7 +71,7 @@ function handleRecord(event, id) {
   }
 
   .record-content {
-    width: 200px;
+    width: 240px;
   }
 
   & > span {
