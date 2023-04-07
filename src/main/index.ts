@@ -5,15 +5,12 @@ import icon from '../../resources/icon.png?asset'
 
 function createWindow(): void {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  const options: Electron.BrowserWindowConstructorOptions = {
     width: 1000,
     minWidth: 950,
     height: 670,
     minHeight: 600,
     show: false,
-    titleBarStyle: 'hidden',
-    frame: false,
-    autoHideMenuBar: true,
     vibrancy: 'dark',
     visualEffectState: 'active',
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -21,7 +18,15 @@ function createWindow(): void {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
-  })
+  }
+
+  if (process.platform === 'darwin') {
+    options.titleBarStyle = 'hidden'
+    options.frame = false
+    options.autoHideMenuBar = true
+  }
+
+  const mainWindow = new BrowserWindow(options)
 
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()

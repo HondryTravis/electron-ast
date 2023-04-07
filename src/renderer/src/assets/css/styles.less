@@ -13,6 +13,7 @@ body {
   color: var(--color-93b3f2);
   background-color: rgba(32, 33, 36, 1);
   height: 100vh;
+  overflow: overlay;
 }
 
 #app {
@@ -22,4 +23,21 @@ body {
 * {
   padding: 0;
   margin: 0;
+}
+
+::-webkit-scrollbar{
+  background-color: transparent;
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: var(--color-86a5b1);
+  border-radius: 8px;
+  background-clip: content-box;
+  border: 2px solid transparent;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
 }

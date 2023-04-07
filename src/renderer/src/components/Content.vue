@@ -211,4 +211,8 @@ onBeforeUnmount(() => {
     }
   }
 }
+
+.cm-editor {
+  overflow: overlay !important;
+}
 </style>
