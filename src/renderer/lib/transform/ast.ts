@@ -339,7 +339,9 @@ export class ParseHTML implements IParseHTML {
       this.attributeName += s;
     }
     if (next === ' ' || next === '>' || (next === '/' && this.html[this.index + 2] === '>')) {
-      this.currentNode.attribute[this.attributeName] = this.attributeValue;
+      if (this.currentNode) {
+        this.currentNode.attribute[this.attributeName] = this.attributeValue;
+      }
       this.attributeName = '';
       this.attributeValue = '';
     }
@@ -357,7 +359,9 @@ export class ParseHTML implements IParseHTML {
       this.attributeValue += s;
     }
     if (next === '"') {
-      this.currentNode.attribute[this.attributeName] = this.attributeValue;
+      if (this.currentNode) {
+        this.currentNode.attribute[this.attributeName] = this.attributeValue;
+      }
       this.attributeName = '';
       this.attributeValue = '';
       this.status = ATTRIBUTE_END;
@@ -394,7 +398,9 @@ export class ParseHTML implements IParseHTML {
         this.status = TAG_START;
       }
     } else {
-      this.currentNode.text += s;
+      if (this.currentNode) {
+        this.currentNode.text += s;
+      }
     }
   }
 
