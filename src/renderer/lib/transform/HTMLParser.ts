@@ -3,6 +3,7 @@ import renderHTML, { DomSerializerOptions } from 'dom-serializer';
 import * as DomHandler from 'domhandler';
 import { parse } from 'html-to-ast'
 
+import { ParseHTML } from './ast';
 import { IModules, ITransform, TransformToHTMLConfig, TransformToHTMLResult } from './type';
 import { ERROR_MESSAGE } from './const';
 
@@ -101,6 +102,10 @@ export class HTMLParser implements IModules {
       return parse(html)
     }
     return null
+  }
+
+  parseASTFromHTMLTest(html: string): any {
+    return ParseHTML.of(html).handleParse()
   }
 
   parse(ast) {
