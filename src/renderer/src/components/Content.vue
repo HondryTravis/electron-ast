@@ -26,7 +26,7 @@ import { LOCAL_DB_STORE_NAME } from '@renderer/const/db'
 // @ts-ignore
 import { Transform } from '../../lib/transform'
 
-import { emitter } from '../utils'
+import { emitter } from '@renderer/utils'
 
 const instance = getCurrentInstance()
 const editorView = ref<any>(null)
@@ -38,7 +38,7 @@ const context = reactive({
     attribs: {},
     children: [
       {
-        data: 'hello world! (请粘贴 HTML 来识别)',
+        data: 'hello world! (请粘贴 HTML 来识别 or 输入 html 内容来识别)',
         endIndex: null,
         next: null,
         parent: {},
@@ -55,7 +55,7 @@ const context = reactive({
     startIndex: null,
     type: 'tag'
   },
-  html: `<div>hello world! (请粘贴 HTML 来识别)</div>`
+  html: `<div>hello world! (请粘贴 HTML 来识别 or 输入 html 内容来识别)</div>`
 })
 
 const createEditor = () => {

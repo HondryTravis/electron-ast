@@ -3,6 +3,6 @@
 </template>
 
 <script setup lang="ts">
-import '../const/db'
-import Content from '../components/Content.vue'
+import '@renderer/const'
+import Content from '@renderer/components/Content.vue'
 </script>

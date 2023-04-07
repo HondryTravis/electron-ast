@@ -1,5 +1,16 @@
 <template>
-  <div class="empty-content" v-show="!context.length">暂无数据</div>
+  <div class="record-items">
+    <div class="record-item">
+      <span class="record-index">ID</span>
+      <span class="record-time">保存时间</span>
+      <span class="record-content">HTML 内容</span>
+      <span class="record-content">JSON 内容</span>
+    </div>
+    <div class="record-operate">
+      <span>操作</span>
+    </div>
+  </div>
+  <div v-show="!context.length" class="empty-content">暂无数据</div>
   <template v-for="item of context" :key="item.id">
     <section>
       <div class="record-items">

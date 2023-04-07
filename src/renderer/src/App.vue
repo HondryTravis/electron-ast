@@ -10,7 +10,7 @@ import Header from '@renderer/components/Header.vue'
 </script>
 
 <style lang="less">
-@import './assets/css/styles.less';
+@import '@renderer/assets/css/styles.less';
 .app-container {
   height: 100%;
 }

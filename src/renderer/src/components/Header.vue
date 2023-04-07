@@ -102,5 +102,9 @@ watch(route, (newValue, oldValue) => {
   & > .menu-button {
     color: var(--color-93b3f2) !important;
   }
+
+  & > .menu-button:active {
+    color: var(--color-202124) !important;
+  }
 }
 </style>
